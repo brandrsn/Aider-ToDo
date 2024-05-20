@@ -26,7 +26,7 @@ export default function Home() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-end mb-4">
           <button
-            className="text-red-500 hover:text-red-700 focus:outline-none"
+            className="text-red-500 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
             onClick={clearTodos}
             tabIndex={0}
             onKeyDown={(e) => {
