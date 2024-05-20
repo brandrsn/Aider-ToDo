@@ -16,16 +16,16 @@ export default function TodoList() {
 
   return (
     <div className="max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Todo List</h1>
+      <h1 className="text-2xl font-bold mb-4 text-white">Todo List</h1>
       <form onSubmit={handleSubmit} className="mb-4">
         <input
           type="text"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
           placeholder="Add a new todo"
-          className="border border-gray-300 rounded px-2 py-1 mr-2"
+          className="bg-gray-700 border border-gray-600 rounded px-2 py-1 mr-2 text-white"
         />
-        <button type="submit" className="bg-blue-500 text-white rounded px-4 py-1">
+        <button type="submit" className="bg-blue-600 text-white rounded px-4 py-1">
           Add
         </button>
       </form>
