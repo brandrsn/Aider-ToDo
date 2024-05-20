@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react"
 import { addTodoItem } from "../actions"
 import { motion } from "framer-motion"
+import { GeistSans } from 'geist/font/sans';
 
 const TODOS_KEY = "todos"
 
