@@ -38,19 +38,21 @@ export default function TodoList() {
   return (
     <div className="max-w-md mx-auto">
       <h1 className="text-2xl font-bold mb-4 text-white">Todo List</h1>
-      <form onSubmit={handleSubmit} className="mb-4">
-        <input
-          type="text"
-          ref={inputRef}
-          value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}
-          placeholder={editingTodoId !== null ? 'Edit todo' : 'Add a new todo'}
-          className="bg-gray-700 border border-gray-600 rounded px-2 py-1 mr-2 text-white"
-        />
+      <form onSubmit={handleSubmit} className="mb-4 flex flex-col">
+        <div className="flex items-center">
+          <input
+            type="text"
+            ref={inputRef}
+            value={newTodo}
+            onChange={(e) => setNewTodo(e.target.value)}
+            placeholder={editingTodoId !== null ? 'Edit todo' : 'Add a new todo'}
+            className="bg-gray-700 border border-gray-600 rounded px-2 py-1 mr-2 text-white flex-grow"
+          />
+          <button type="submit" className="bg-blue-600 text-white rounded px-4 py-1">
+            {editingTodoId !== null ? 'Save' : 'Add'}
+          </button>
+        </div>
         {validationMessage && <p className="text-red-500 mt-1">{validationMessage}</p>}
-        <button type="submit" className="bg-blue-600 text-white rounded px-4 py-1">
-          Add
-        </button>
       </form>
       <ul className="space-y-4">
         {todos.map((todo) => (
