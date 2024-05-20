@@ -11,11 +11,8 @@ export default function TodoList({ theme, toggleTheme }: TodoListProps) {
   const [todos, setTodos] = useState<
     { id: number; text: string; completed: boolean }[]
   >(() => {
-    if (typeof window !== 'undefined') {
-      const storedTodos = localStorage.getItem(TODOS_KEY)
-      return storedTodos ? JSON.parse(storedTodos) : []
-    }
-    return []
+    const storedTodos = localStorage.getItem(TODOS_KEY)
+    return storedTodos ? JSON.parse(storedTodos) : []
   })
   const [newTodo, setNewTodo] = useState("")
   const [editingTodoId, setEditingTodoId] = useState<number | null>(null)
