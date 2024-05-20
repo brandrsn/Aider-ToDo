@@ -28,9 +28,10 @@ export default function Home() {
           <button
             className={`${
               theme === "dark"
-                ? "bg-gray-700 text-white"
-                : "bg-gray-200 text-gray-900"
-            } rounded px-4 py-1 ml-4 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2`}
+                ? "bg-gray-700 text-red-600"
+                : "bg-gray-200 text-red-600"
+              // } rounded px-4 py-1 ml-4 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2`}
+            } rounded px-4 py-1 ml-4`}
             onClick={clearTodos}
             tabIndex={0}
             onKeyDown={(e) => {
