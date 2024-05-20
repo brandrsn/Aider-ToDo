@@ -124,7 +124,24 @@ export default function TodoList({ theme, toggleTheme }) {
       </form>
       <ul className="space-y-4">
         {todos.map((todo) => (
-          <li key={todo.id} className="bg-white dark:bg-gray-800 p-4 rounded shadow border border-gray-300 dark:border-gray-700">
+          <li
+            key={todo.id}
+            className="bg-white dark:bg-gray-800 p-4 rounded shadow border border-gray-300 dark:border-gray-700"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "e") {
+                e.preventDefault();
+                handleEdit(todo.id);
+              } else if (e.key === "Enter") {
+                e.preventDefault();
+                const updatedTodos = todos.map((t) =>
+                  t.id === todo.id ? { ...t, completed: !t.completed } : t
+                );
+                setTodos(updatedTodos);
+                localStorage.setItem(TODOS_KEY, JSON.stringify(updatedTodos));
+              }
+            }}
+          >
             {editingTodoId === todo.id ? (
               <div className="flex items-center">
                 <input
@@ -153,20 +170,6 @@ export default function TodoList({ theme, toggleTheme }) {
                     ? "line-through text-gray-400 dark:text-gray-500"
                     : "text-gray-900 dark:text-white"
                 }`}
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === "e") {
-                    e.preventDefault();
-                    handleEdit(todo.id);
-                  } else if (e.key === "Enter") {
-                    e.preventDefault();
-                    const updatedTodos = todos.map((t) =>
-                      t.id === todo.id ? { ...t, completed: !t.completed } : t
-                    );
-                    setTodos(updatedTodos);
-                    localStorage.setItem(TODOS_KEY, JSON.stringify(updatedTodos));
-                  }
-                }}
                 onClick={() => handleEdit(todo.id)}
               >
                 {todo.text}
