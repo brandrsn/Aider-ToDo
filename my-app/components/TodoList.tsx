@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 export default function TodoList() {
   const [todos, setTodos] = useState<{ id: number; text: string; completed: boolean }[]>([]);
