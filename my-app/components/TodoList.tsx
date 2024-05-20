@@ -21,6 +21,7 @@ export default function TodoList() {
       }
       setNewTodo('');
       setValidationMessage('');
+      inputRef.current?.focus();
     } else {
       setValidationMessage('Please enter a todo');
     }
@@ -45,6 +46,11 @@ export default function TodoList() {
             ref={inputRef}
             value={newTodo}
             onChange={(e) => setNewTodo(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleSubmit(e as any);
+              }
+            }}
             placeholder={editingTodoId !== null ? 'Edit todo' : 'Add a new todo'}
             className="bg-gray-700 border border-gray-600 rounded px-2 py-1 mr-2 text-white flex-grow"
           />
