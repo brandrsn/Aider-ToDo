@@ -12,7 +12,7 @@ export default function TodoList({ theme, toggleTheme }) {
   const [newTodo, setNewTodo] = useState("")
   const [editingTodoId, setEditingTodoId] = useState(null)
   const [validationMessage, setValidationMessage] = useState("")
-  const inputRef = useRef(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -169,7 +169,7 @@ export default function TodoList({ theme, toggleTheme }) {
                   className="bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded px-2 py-1 mr-2 text-gray-900 dark:text-white flex-grow"
                 />
                 <button
-                  onClick={() => handleSave(todo.id, inputRef.current.value)}
+                  onClick={() => handleSave(todo.id, inputRef.current?.value || '')}
                   className="bg-blue-500 dark:bg-blue-600 text-white rounded px-4 py-1"
                 >
                   Save
