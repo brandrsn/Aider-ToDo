@@ -18,7 +18,7 @@ export default function Home() {
   }
 
   return (
-    <main className={`min-h-screen ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'} py-6 flex flex-col justify-center`}>
+    <main className={`min-h-screen ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'} py-6`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-end mb-4">
           <button
