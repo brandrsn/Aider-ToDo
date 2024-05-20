@@ -47,6 +47,13 @@ export default function TodoList({ theme, toggleTheme }) {
 
   const handleEdit = (id) => {
     setEditingTodoId(id);
+    setTimeout(() => {
+      const input = document.getElementById(`edit-${id}`);
+      if (input) {
+        input.focus();
+        input.setSelectionRange(input.value.length, input.value.length);
+      }
+    }, 0);
   }
 
   const handleSave = (id, newText) => {
@@ -123,6 +130,12 @@ export default function TodoList({ theme, toggleTheme }) {
                 <input
                   type="text"
                   defaultValue={todo.text}
+                  id={`edit-${todo.id}`}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      handleSave(todo.id, e.target.value);
+                    }
+                  }}
                   onBlur={(e) => handleSave(todo.id, e.target.value)}
                   className="bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded px-2 py-1 mr-2 text-gray-900 dark:text-white flex-grow"
                 />
