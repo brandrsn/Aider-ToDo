@@ -44,10 +44,6 @@ export default function TodoList() {
     inputRef.current?.focus();
   }, []);
 
-  const handleDelete = (id: number) => {
-    console.log('Deleting/completing todo with id:', id);
-    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, completed: true } : todo)));
-  };
 
   return (
     <div className="max-w-md mx-auto">
@@ -87,17 +83,13 @@ export default function TodoList() {
                 handleEdit(todo.id);
               } else if (e.key === 'Delete') {
                 e.preventDefault();
-                console.log('Deleting/completing todo with Delete key, id:', todo.id);
-                handleDelete(todo.id);
+                console.log('Toggling todo completion with Delete key, id:', todo.id);
+                setTodos(todos.map((t) => (t.id === todo.id ? { ...t, completed: !t.completed } : t)));
               }
             }}
             className={`bg-gray-800 p-4 rounded shadow border border-gray-700 cursor-pointer ${
               todo.completed ? 'line-through text-gray-500' : ''
             }`}
-            onDoubleClick={() => {
-              console.log('Toggling todo completion with double-click, id:', todo.id);
-              setTodos(todos.map((t) => (t.id === todo.id ? { ...t, completed: !t.completed } : t)));
-            }}
           >
             {todo.text}
           </li>
