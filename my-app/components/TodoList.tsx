@@ -64,11 +64,25 @@ export default function TodoList({ theme, toggleTheme }: TodoListProps) {
   }, [])
 
   return (
-    <div className={`max-w-md mx-auto ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'}`}>
+    <div
+      className={`max-w-md mx-auto ${
+        theme === "dark" ? "bg-gray-800" : "bg-white"
+      }`}
+    >
       <div className="flex justify-between items-center mb-4">
-        <h1 className={`text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Todo List</h1>
+        <h1
+          className={`text-2xl font-bold ${
+            theme === "dark" ? "text-white" : "text-gray-900"
+          }`}
+        >
+          Todo List
+        </h1>
         <button
-          className={`${theme === 'dark' ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-900'} rounded px-4 py-1`}
+          className={`${
+            theme === "dark"
+              ? "bg-gray-700 text-white"
+              : "bg-gray-200 text-gray-900"
+          } rounded px-4 py-1`}
           onClick={toggleTheme}
         >
           {theme === "dark" ? "Light Mode" : "Dark Mode"}
@@ -107,7 +121,9 @@ export default function TodoList({ theme, toggleTheme }: TodoListProps) {
           <li
             key={todo.id}
             className={`bg-white dark:bg-gray-800 p-4 rounded shadow border border-gray-300 dark:border-gray-700 cursor-pointer ${
-              todo.completed ? "line-through text-gray-400 dark:text-gray-500" : "text-gray-900 dark:text-white"
+              todo.completed
+                ? "line-through text-gray-400 dark:text-gray-500"
+                : "text-gray-900 dark:text-white"
             }`}
             tabIndex={0}
             onKeyDown={(e) => {
@@ -133,7 +149,7 @@ export default function TodoList({ theme, toggleTheme }: TodoListProps) {
           </li>
         ))}
       </ul>
-      <button
+      {/* <button
         className="mt-4 text-red-500 hover:text-red-700 focus:outline-none"
         onClick={() => {
           const clearButton = document.querySelector("button[tabIndex='0']")
@@ -144,7 +160,7 @@ export default function TodoList({ theme, toggleTheme }: TodoListProps) {
         tabIndex={-1}
       >
         Clear All Todos
-      </button>
+      </button> */}
     </div>
   )
 }
