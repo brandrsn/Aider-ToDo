@@ -2,6 +2,7 @@
 
 import { useTheme } from "next-themes"
 import TodoList from "../components/TodoList"
+import { FaSun, FaMoon } from "react-icons/fa"
 
 const TODOS_KEY = "todos"
 
@@ -57,7 +58,7 @@ export default function Home() {
               }
             }}
           >
-            {theme === "dark" ? "Light Mode" : "Dark Mode"}
+            {theme === "dark" ? <FaSun /> : <FaMoon />}
           </button>
         </div>
         <TodoList theme={theme} />
