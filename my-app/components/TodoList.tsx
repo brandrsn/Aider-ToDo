@@ -65,7 +65,7 @@ export default function TodoList({ theme, toggleTheme }: TodoListProps) {
 
   return (
     <div
-      className={`max-w-md mx-auto ${
+      className={`max-w-md w-full mt-8 ${
         theme === "dark" ? "bg-gray-800" : "bg-white"
       }`}
     >
