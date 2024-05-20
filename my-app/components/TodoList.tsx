@@ -65,7 +65,13 @@ export default function TodoList() {
           <li
             key={todo.id}
             className="bg-gray-800 p-4 rounded shadow border border-gray-700 cursor-pointer"
+            tabIndex={0}
             onClick={() => handleEdit(todo.id)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleEdit(todo.id);
+              }
+            }}
           >
             {todo.text}
           </li>
