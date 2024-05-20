@@ -2,6 +2,7 @@
 
 import { useTheme } from "next-themes"
 import TodoList from "../components/TodoList"
+import { clearAllTodos } from "../actions"
 
 const TODOS_KEY = "todos"
 
