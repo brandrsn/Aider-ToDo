@@ -41,7 +41,7 @@ export default function TodoList() {
   }, []);
 
   const handleDelete = (id: number) => {
-    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, completed: true } : todo)));
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   return (
