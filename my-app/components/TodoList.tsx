@@ -78,13 +78,13 @@ export default function TodoList() {
             }`}
             tabIndex={0}
             onKeyDown={(e) => {
-              if (e.key === 'Enter') {
+              if (e.key === 'e') {
                 e.preventDefault();
-                console.log('Editing todo with Enter key, id:', todo.id);
+                console.log('Editing todo with "e" key, id:', todo.id);
                 handleEdit(todo.id);
-              } else if (e.key === 'Delete') {
+              } else if (e.key === 'Enter') {
                 e.preventDefault();
-                console.log('Toggling todo completion with Delete key, id:', todo.id);
+                console.log('Toggling todo completion with "Enter" key, id:', todo.id);
                 setTodos(todos.map((t) => (t.id === todo.id ? { ...t, completed: !t.completed } : t)));
               }
             }}
