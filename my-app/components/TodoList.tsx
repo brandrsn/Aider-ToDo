@@ -29,9 +29,9 @@ export default function TodoList() {
           Add
         </button>
       </form>
-      <ul>
+      <ul className="space-y-4">
         {todos.map((todo, index) => (
-          <li key={index} className="mb-2">
+          <li key={index} className="bg-gray-800 p-4 rounded shadow">
             {todo}
           </li>
         ))}
