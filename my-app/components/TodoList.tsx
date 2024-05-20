@@ -2,8 +2,13 @@
 
 import { useState, useRef, useEffect } from 'react';
 
+const TODOS_KEY = 'todos';
+
 export default function TodoList() {
-  const [todos, setTodos] = useState<{ id: number; text: string; completed: boolean }[]>([]);
+  const [todos, setTodos] = useState<{ id: number; text: string; completed: boolean }[]>(() => {
+    const storedTodos = localStorage.getItem(TODOS_KEY);
+    return storedTodos ? JSON.parse(storedTodos) : [];
+  });
   const [newTodo, setNewTodo] = useState('');
   const [editingTodoId, setEditingTodoId] = useState<number | null>(null);
   const [validationMessage, setValidationMessage] = useState('');
@@ -15,11 +20,15 @@ export default function TodoList() {
     if (trimmedTodo) {
       if (editingTodoId !== null) {
         console.log('Editing todo with id:', editingTodoId);
-        setTodos(todos.map((todo) => (todo.id === editingTodoId ? { ...todo, text: trimmedTodo } : todo)));
+        const updatedTodos = todos.map((todo) => (todo.id === editingTodoId ? { ...todo, text: trimmedTodo } : todo));
+        setTodos(updatedTodos);
+        localStorage.setItem(TODOS_KEY, JSON.stringify(updatedTodos));
         setEditingTodoId(null);
       } else {
         console.log('Adding new todo:', trimmedTodo);
-        setTodos([...todos, { id: Date.now(), text: trimmedTodo, completed: false }]);
+        const newTodos = [...todos, { id: Date.now(), text: trimmedTodo, completed: false }];
+        setTodos(newTodos);
+        localStorage.setItem(TODOS_KEY, JSON.stringify(newTodos));
       }
       setNewTodo('');
       setValidationMessage('');
@@ -85,7 +94,9 @@ export default function TodoList() {
               } else if (e.key === 'Enter') {
                 e.preventDefault();
                 console.log('Toggling todo completion with "Enter" key, id:', todo.id);
-                setTodos(todos.map((t) => (t.id === todo.id ? { ...t, completed: !t.completed } : t)));
+                const updatedTodos = todos.map((t) => (t.id === todo.id ? { ...t, completed: !t.completed } : t));
+                setTodos(updatedTodos);
+                localStorage.setItem(TODOS_KEY, JSON.stringify(updatedTodos));
               }
             }}
           >
