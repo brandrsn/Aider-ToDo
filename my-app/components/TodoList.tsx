@@ -14,34 +14,26 @@ export default function TodoList({ theme, toggleTheme }) {
   const inputRef = useRef(null)
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    const trimmedTodo = newTodo.trim()
+    e.preventDefault();
+    const trimmedTodo = newTodo.trim();
     if (trimmedTodo) {
-      if (editingTodoId !== null) {
-        console.log("Editing todo with id:", editingTodoId)
-        const updatedTodos = todos.map((todo) =>
-          todo.id === editingTodoId ? { ...todo, text: trimmedTodo } : todo
-        )
-        setTodos(updatedTodos)
-        localStorage.setItem(TODOS_KEY, JSON.stringify(updatedTodos))
-        setEditingTodoId(null)
-      } else {
-        console.log("Adding new todo:", trimmedTodo)
-        const newTodos = [
-          ...todos,
-          { id: Date.now(), text: trimmedTodo, completed: false },
-        ]
-        setTodos(newTodos)
-        localStorage.setItem(TODOS_KEY, JSON.stringify(newTodos))
+      try {
+        const formData = new FormData();
+        formData.append('todo', trimmedTodo);
+        const newTodos = await addTodoItem(formData);
+        setTodos(newTodos);
+        setNewTodo("");
+        setValidationMessage("");
+        inputRef.current?.focus();
+      } catch (error) {
+        console.log("Error adding todo:", error.message);
+        setValidationMessage(error.message);
       }
-      setNewTodo("")
-      setValidationMessage("")
-      inputRef.current?.focus()
     } else {
-      console.log("Validation failed: empty todo")
-      setValidationMessage("Please enter a todo")
+      console.log("Validation failed: empty todo");
+      setValidationMessage("Please enter a todo");
     }
-  }
+  };
 
   const handleEdit = (id) => {
     console.log("Editing todo with id:", id)
