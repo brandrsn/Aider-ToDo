@@ -9,6 +9,6 @@ export async function addTodoItem(formData: FormData) {
   }
 }
 export async function clearAllTodos() {
-  localStorage.removeItem('todos');
+  // This function can be used to perform any server-side operations if needed
   return [];
 }
