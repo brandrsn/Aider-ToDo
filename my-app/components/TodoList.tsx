@@ -63,6 +63,13 @@ export default function TodoList({ theme, toggleTheme }) {
     setTodos(updatedTodos);
     localStorage.setItem(TODOS_KEY, JSON.stringify(updatedTodos));
     setEditingTodoId(null);
+
+    // Focus on the next tabbable item
+    const currentIndex = todos.findIndex(todo => todo.id === id);
+    const nextTodo = document.querySelectorAll('[tabindex="0"]')[currentIndex + 1];
+    if (nextTodo) {
+      nextTodo.focus();
+    }
   }
 
   useEffect(() => {
