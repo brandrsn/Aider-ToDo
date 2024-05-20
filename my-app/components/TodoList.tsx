@@ -14,20 +14,24 @@ export default function TodoList() {
     const trimmedTodo = newTodo.trim();
     if (trimmedTodo) {
       if (editingTodoId !== null) {
+        console.log('Editing todo with id:', editingTodoId);
         setTodos(todos.map((todo) => (todo.id === editingTodoId ? { ...todo, text: trimmedTodo } : todo)));
         setEditingTodoId(null);
       } else {
+        console.log('Adding new todo:', trimmedTodo);
         setTodos([...todos, { id: Date.now(), text: trimmedTodo, completed: false }]);
       }
       setNewTodo('');
       setValidationMessage('');
       inputRef.current?.focus();
     } else {
+      console.log('Validation failed: empty todo');
       setValidationMessage('Please enter a todo');
     }
   };
 
   const handleEdit = (id: number) => {
+    console.log('Editing todo with id:', id);
     const todo = todos.find((todo) => todo.id === id);
     if (todo) {
       setNewTodo(todo.text);
@@ -41,6 +45,7 @@ export default function TodoList() {
   }, []);
 
   const handleDelete = (id: number) => {
+    console.log('Deleting/completing todo with id:', id);
     setTodos(todos.map((todo) => (todo.id === id ? { ...todo, completed: true } : todo)));
   };
 
@@ -78,16 +83,21 @@ export default function TodoList() {
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 e.preventDefault();
+                console.log('Editing todo with Enter key, id:', todo.id);
                 handleEdit(todo.id);
               } else if (e.key === 'Delete') {
                 e.preventDefault();
+                console.log('Deleting/completing todo with Delete key, id:', todo.id);
                 handleDelete(todo.id);
               }
             }}
             className={`bg-gray-800 p-4 rounded shadow border border-gray-700 cursor-pointer ${
               todo.completed ? 'line-through text-gray-500' : ''
             }`}
-            onDoubleClick={() => setTodos(todos.map((t) => (t.id === todo.id ? { ...t, completed: !t.completed } : t)))}
+            onDoubleClick={() => {
+              console.log('Toggling todo completion with double-click, id:', todo.id);
+              setTodos(todos.map((t) => (t.id === todo.id ? { ...t, completed: !t.completed } : t)));
+            }}
           >
             {todo.text}
           </li>
