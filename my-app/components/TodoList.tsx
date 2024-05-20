@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 
 const TODOS_KEY = 'todos';
 
@@ -56,7 +57,15 @@ export default function TodoList() {
 
   return (
     <div className="max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4 text-white">Todo List</h1>
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-2xl font-bold text-white">Todo List</h1>
+        <button
+          className="bg-gray-700 text-white rounded px-4 py-1"
+          onClick={toggleTheme}
+        >
+          {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+        </button>
+      </div>
       <form onSubmit={handleSubmit} className="mb-4 flex flex-col">
         <div className="flex items-center">
           <input
@@ -107,3 +116,8 @@ export default function TodoList() {
     </div>
   );
 }
+  const { theme, setTheme } = useTheme();
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
