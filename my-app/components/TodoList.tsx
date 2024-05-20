@@ -20,8 +20,16 @@ export default function TodoList({ theme, toggleTheme }) {
       try {
         const formData = new FormData();
         formData.append('todo', trimmedTodo);
-        const newTodoItem = await addTodoItem(formData);
-        const newTodos = [...todos, newTodoItem];
+        let newTodos;
+        if (editingTodoId !== null) {
+          newTodos = todos.map((todo) =>
+            todo.id === editingTodoId ? { ...todo, text: trimmedTodo } : todo
+          );
+          setEditingTodoId(null);
+        } else {
+          const newTodoItem = await addTodoItem(formData);
+          newTodos = [...todos, newTodoItem];
+        }
         setTodos(newTodos);
         localStorage.setItem(TODOS_KEY, JSON.stringify(newTodos));
         setNewTodo("");
