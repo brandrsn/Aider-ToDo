@@ -8,3 +8,7 @@ export async function addTodoItem(formData: FormData) {
     throw new Error('Todo item cannot be empty');
   }
 }
+export async function clearAllTodos() {
+  localStorage.removeItem('todos');
+  return [];
+}
