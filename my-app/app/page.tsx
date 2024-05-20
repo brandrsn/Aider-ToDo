@@ -24,6 +24,12 @@ export default function Home() {
           <button
             className="text-red-500 hover:text-red-700 focus:outline-none"
             onClick={clearTodos}
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                clearTodos()
+              }
+            }}
           >
             Clear All Todos
           </button>

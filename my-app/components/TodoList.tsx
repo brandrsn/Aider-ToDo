@@ -133,6 +133,18 @@ export default function TodoList({ theme, toggleTheme }: TodoListProps) {
           </li>
         ))}
       </ul>
+      <button
+        className="mt-4 text-red-500 hover:text-red-700 focus:outline-none"
+        onClick={() => {
+          const clearButton = document.querySelector("button[tabIndex='0']")
+          if (clearButton) {
+            clearButton.focus()
+          }
+        }}
+        tabIndex={-1}
+      >
+        Clear All Todos
+      </button>
     </div>
   )
 }
