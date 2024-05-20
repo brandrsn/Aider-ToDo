@@ -127,7 +127,7 @@ export default function TodoList({ theme }) {
               if (e.key === "e") {
                 e.preventDefault();
                 handleEdit(todo.id);
-              } else if (e.key === "Enter") {
+              } else if (e.key === "Enter" && editingTodoId !== todo.id) {
                 e.preventDefault();
                 const updatedTodos = todos.map((t) =>
                   t.id === todo.id ? { ...t, completed: !t.completed } : t
@@ -149,10 +149,11 @@ export default function TodoList({ theme }) {
                   id={`edit-${todo.id}`}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
+                      e.preventDefault();
                       handleSave(todo.id, (e.target as HTMLInputElement).value);
                     }
                   }}
-                  onBlur={(e) => handleSave(todo.id, e.target.value)}
+                  onBlur={(e) => handleSave(todo.id, (e.target as HTMLInputElement).value)}
                   className="bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded px-2 py-1 mr-2 text-gray-900 dark:text-white flex-grow"
                 />
                 <button
