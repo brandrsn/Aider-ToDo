@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react"
+import { addTodoItem } from "../actions"
 
 const TODOS_KEY = "todos"
 
@@ -12,7 +13,7 @@ export default function TodoList({ theme, toggleTheme }) {
   const [validationMessage, setValidationMessage] = useState("")
   const inputRef = useRef(null)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const trimmedTodo = newTodo.trim()
     if (trimmedTodo) {
