@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import './globals.css';
-import { ThemeProvider } from 'next-themes';
+import "./globals.css"
+import { ThemeProvider } from "next-themes"
 
 export default function RootLayout({ children }) {
   return (
@@ -10,10 +10,8 @@ export default function RootLayout({ children }) {
         <title>Todo List App</title>
       </head>
       <body>
-        <ThemeProvider attribute="class">
-          {children}
-        </ThemeProvider>
+        <ThemeProvider attribute="class">{children}</ThemeProvider>
       </body>
     </html>
-  );
+  )
 }
