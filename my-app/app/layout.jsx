@@ -2,6 +2,7 @@
 
 import "./globals.css"
 import { ThemeProvider } from "next-themes"
+import { GeistSans, GeistMono } from 'geist/font/sans';
 
 export default function RootLayout({ children }) {
   return (

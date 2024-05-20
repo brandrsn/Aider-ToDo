@@ -79,9 +79,7 @@ export default function TodoList({ theme }) {
 
   return (
     <div
-      className={`max-w-md w-full mt-8 mx-auto ${
-        theme === "dark" ? "bg-gray-800" : "bg-white"
-      }`}
+      className={`max-w-md w-full mt-8 mx-auto ${theme === "dark" ? "bg-gray-800" : "bg-white"} ${GeistSans.className}`}
     >
       <h1
         className={`text-2xl font-bold ${
