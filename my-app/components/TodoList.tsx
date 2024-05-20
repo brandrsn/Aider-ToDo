@@ -67,11 +67,11 @@ export default function TodoList() {
   }, [])
 
   return (
-    <div className="max-w-md mx-auto">
+    <div className="max-w-md mx-auto dark:bg-gray-800">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold text-white">Todo List</h1>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Todo List</h1>
         <button
-          className="bg-gray-700 text-white rounded px-4 py-1"
+          className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded px-4 py-1"
           onClick={toggleTheme}
         >
           {theme === "dark" ? "Light Mode" : "Dark Mode"}
@@ -92,11 +92,11 @@ export default function TodoList() {
             placeholder={
               editingTodoId !== null ? "Edit todo" : "Add a new todo"
             }
-            className="bg-gray-700 border border-gray-600 rounded px-2 py-1 mr-2 text-white flex-grow"
+            className="bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded px-2 py-1 mr-2 text-gray-900 dark:text-white flex-grow"
           />
           <button
             type="submit"
-            className="bg-blue-600 text-white rounded px-4 py-1"
+            className="bg-blue-500 dark:bg-blue-600 text-white rounded px-4 py-1"
           >
             {editingTodoId !== null ? "Save" : "Add"}
           </button>
@@ -109,8 +109,8 @@ export default function TodoList() {
         {todos.map((todo) => (
           <li
             key={todo.id}
-            className={`bg-gray-800 p-4 rounded shadow border border-gray-700 cursor-pointer ${
-              todo.completed ? "line-through text-gray-500" : ""
+            className={`bg-white dark:bg-gray-800 p-4 rounded shadow border border-gray-300 dark:border-gray-700 cursor-pointer ${
+              todo.completed ? "line-through text-gray-400 dark:text-gray-500" : "text-gray-900 dark:text-white"
             }`}
             tabIndex={0}
             onKeyDown={(e) => {
