@@ -1,16 +1,13 @@
-"use client"
-
 import { useState, useRef, useEffect } from "react"
-import { useTheme } from "next-themes"
 
 const TODOS_KEY = "todos"
 
-export default function TodoList() {
-  const { theme, setTheme } = useTheme()
+interface TodoListProps {
+  theme: string
+  toggleTheme: () => void
+}
 
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark")
-  }
+export default function TodoList({ theme, toggleTheme }: TodoListProps) {
   const [todos, setTodos] = useState<
     { id: number; text: string; completed: boolean }[]
   >(() => {
@@ -67,11 +64,11 @@ export default function TodoList() {
   }, [])
 
   return (
-    <div className="max-w-md mx-auto dark:bg-gray-800">
+    <div className={`max-w-md mx-auto ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'}`}>
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Todo List</h1>
+        <h1 className={`text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Todo List</h1>
         <button
-          className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded px-4 py-1"
+          className={`${theme === 'dark' ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-900'} rounded px-4 py-1`}
           onClick={toggleTheme}
         >
           {theme === "dark" ? "Light Mode" : "Dark Mode"}
