@@ -69,6 +69,7 @@ export default function TodoList() {
             onClick={() => handleEdit(todo.id)}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
+                e.preventDefault();
                 handleEdit(todo.id);
               }
             }}
