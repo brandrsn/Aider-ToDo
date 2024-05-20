@@ -150,7 +150,7 @@ export default function TodoList({ theme }) {
                   id={`edit-${todo.id}`}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
-                      handleSave(todo.id, e.target.value);
+                      handleSave(todo.id, (e.target as HTMLInputElement).value);
                     }
                   }}
                   onBlur={(e) => handleSave(todo.id, e.target.value)}
