@@ -87,9 +87,6 @@ export default function TodoList() {
                 setTodos(todos.map((t) => (t.id === todo.id ? { ...t, completed: !t.completed } : t)));
               }
             }}
-            className={`bg-gray-800 p-4 rounded shadow border border-gray-700 cursor-pointer ${
-              todo.completed ? 'line-through text-gray-500' : ''
-            }`}
           >
             {todo.text}
           </li>
