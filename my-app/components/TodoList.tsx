@@ -73,9 +73,10 @@ export default function TodoList() {
         {todos.map((todo) => (
           <li
             key={todo.id}
-            className="bg-gray-800 p-4 rounded shadow border border-gray-700 cursor-pointer"
+            className={`bg-gray-800 p-4 rounded shadow border border-gray-700 cursor-pointer ${
+              todo.completed ? 'line-through text-gray-500' : ''
+            }`}
             tabIndex={0}
-            onClick={() => handleEdit(todo.id)}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 e.preventDefault();
