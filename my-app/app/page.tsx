@@ -3,6 +3,7 @@
 import { useTheme } from "next-themes"
 import TodoList from "../components/TodoList"
 import { FaSun, FaMoon } from "react-icons/fa"
+import { GeistSans } from 'geist/font/sans';
 
 const TODOS_KEY = "todos"
 
