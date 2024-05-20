@@ -1,0 +1,4 @@
+export async function clearAllTodos() {
+  localStorage.removeItem('todos');
+  return [];
+}
