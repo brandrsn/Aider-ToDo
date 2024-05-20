@@ -52,8 +52,8 @@ export default function Home() {
             tabIndex={0}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                e.preventDefault();
-                toggleTheme();
+                e.preventDefault()
+                toggleTheme()
               }
             }}
           >
