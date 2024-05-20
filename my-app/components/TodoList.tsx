@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 
 const TODOS_KEY = "todos"
 
-export default function TodoList({ theme, toggleTheme }) {
+export default function TodoList({ theme }) {
   const [todos, setTodos] = useState(() => {
     const storedTodos = localStorage.getItem(TODOS_KEY)
     return storedTodos ? JSON.parse(storedTodos) : []
@@ -83,25 +83,13 @@ export default function TodoList({ theme, toggleTheme }) {
         theme === "dark" ? "bg-gray-800" : "bg-white"
       }`}
     >
-      <div className="flex justify-between items-center mb-4">
-        <h1
-          className={`text-2xl font-bold ${
-            theme === "dark" ? "text-white" : "text-gray-900"
-          }`}
-        >
-          Todo List
-        </h1>
-        <button
-          className={`${
-            theme === "dark"
-              ? "bg-gray-700 text-white"
-              : "bg-gray-200 text-gray-900"
-          } rounded px-4 py-1`}
-          onClick={toggleTheme}
-        >
-          {theme === "dark" ? "Light Mode" : "Dark Mode"}
-        </button>
-      </div>
+      <h1
+        className={`text-2xl font-bold ${
+          theme === "dark" ? "text-white" : "text-gray-900"
+        } mb-4`}
+      >
+        Todo List
+      </h1>
       <form onSubmit={handleSubmit} className="mb-4 flex flex-col">
         <div className="flex items-center">
           <input

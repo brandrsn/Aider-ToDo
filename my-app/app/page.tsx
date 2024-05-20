@@ -37,8 +37,24 @@ export default function Home() {
           >
             Clear All Todos
           </button>
+          <button
+            className={`${
+              theme === "dark"
+                ? "bg-gray-700 text-white"
+                : "bg-gray-200 text-gray-900"
+            } rounded px-4 py-1 ml-4`}
+            onClick={toggleTheme}
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                toggleTheme()
+              }
+            }}
+          >
+            {theme === "dark" ? "Light Mode" : "Dark Mode"}
+          </button>
         </div>
-        <TodoList theme={theme} toggleTheme={toggleTheme} />
+        <TodoList theme={theme} />
       </div>
     </main>
   )
