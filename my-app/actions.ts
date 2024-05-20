@@ -8,7 +8,3 @@ export async function addTodoItem(formData: FormData) {
     throw new Error('Todo item cannot be empty');
   }
 }
-export async function clearAllTodos() {
-  // This function can be used to perform any server-side operations if needed
-  return [];
-}
