@@ -49,7 +49,7 @@ export default function TodoList({ theme, toggleTheme }) {
   const handleEdit = (id) => {
     setEditingTodoId(id);
     setTimeout(() => {
-      const input = document.getElementById(`edit-${id}`);
+      const input = document.getElementById(`edit-${id}`) as HTMLInputElement;
       if (input) {
         input.focus();
         input.setSelectionRange(input.value.length, input.value.length);
