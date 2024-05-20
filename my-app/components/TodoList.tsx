@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react';
 
 export default function TodoList() {
-  const [todos, setTodos] = useState<{ id: number; text: string }[]>([]);
+  const [todos, setTodos] = useState<{ id: number; text: string; completed: boolean }[]>([]);
   const [newTodo, setNewTodo] = useState('');
   const [editingTodoId, setEditingTodoId] = useState<number | null>(null);
   const [validationMessage, setValidationMessage] = useState('');
@@ -17,7 +17,7 @@ export default function TodoList() {
         setTodos(todos.map((todo) => (todo.id === editingTodoId ? { ...todo, text: trimmedTodo } : todo)));
         setEditingTodoId(null);
       } else {
-        setTodos([...todos, { id: Date.now(), text: trimmedTodo }]);
+        setTodos([...todos, { id: Date.now(), text: trimmedTodo, completed: false }]);
       }
       setNewTodo('');
       setValidationMessage('');
@@ -34,6 +34,14 @@ export default function TodoList() {
       setEditingTodoId(id);
       inputRef.current?.focus();
     }
+  };
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  const handleDelete = (id: number) => {
+    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, completed: true } : todo)));
   };
 
   return (
@@ -71,8 +79,14 @@ export default function TodoList() {
               if (e.key === 'Enter') {
                 e.preventDefault();
                 handleEdit(todo.id);
+              } else if (e.key === 'Delete') {
+                e.preventDefault();
+                handleDelete(todo.id);
               }
             }}
+            className={`bg-gray-800 p-4 rounded shadow border border-gray-700 cursor-pointer ${
+              todo.completed ? 'line-through text-gray-500' : ''
+            }`}
           >
             {todo.text}
           </li>
