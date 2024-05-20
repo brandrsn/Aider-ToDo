@@ -20,8 +20,10 @@ export default function TodoList({ theme, toggleTheme }) {
       try {
         const formData = new FormData();
         formData.append('todo', trimmedTodo);
-        const newTodos = await addTodoItem(formData);
+        const newTodoItem = await addTodoItem(formData);
+        const newTodos = [...todos, newTodoItem];
         setTodos(newTodos);
+        localStorage.setItem(TODOS_KEY, JSON.stringify(newTodos));
         setNewTodo("");
         setValidationMessage("");
         inputRef.current?.focus();
