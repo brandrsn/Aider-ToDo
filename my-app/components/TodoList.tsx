@@ -2,24 +2,17 @@ import { useState, useRef, useEffect } from "react"
 
 const TODOS_KEY = "todos"
 
-interface TodoListProps {
-  theme: string
-  toggleTheme: () => void
-}
-
-export default function TodoList({ theme, toggleTheme }: TodoListProps) {
-  const [todos, setTodos] = useState<
-    { id: number; text: string; completed: boolean }[]
-  >(() => {
+export default function TodoList({ theme, toggleTheme }) {
+  const [todos, setTodos] = useState(() => {
     const storedTodos = localStorage.getItem(TODOS_KEY)
     return storedTodos ? JSON.parse(storedTodos) : []
   })
   const [newTodo, setNewTodo] = useState("")
-  const [editingTodoId, setEditingTodoId] = useState<number | null>(null)
+  const [editingTodoId, setEditingTodoId] = useState(null)
   const [validationMessage, setValidationMessage] = useState("")
-  const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef(null)
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     const trimmedTodo = newTodo.trim()
     if (trimmedTodo) {
@@ -49,7 +42,7 @@ export default function TodoList({ theme, toggleTheme }: TodoListProps) {
     }
   }
 
-  const handleEdit = (id: number) => {
+  const handleEdit = (id) => {
     console.log("Editing todo with id:", id)
     const todo = todos.find((todo) => todo.id === id)
     if (todo) {
@@ -97,7 +90,7 @@ export default function TodoList({ theme, toggleTheme }: TodoListProps) {
             onChange={(e) => setNewTodo(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                handleSubmit(e as any)
+                handleSubmit(e)
               }
             }}
             placeholder={
@@ -149,18 +142,6 @@ export default function TodoList({ theme, toggleTheme }: TodoListProps) {
           </li>
         ))}
       </ul>
-      {/* <button
-        className="mt-4 text-red-500 hover:text-red-700 focus:outline-none"
-        onClick={() => {
-          const clearButton = document.querySelector("button[tabIndex='0']")
-          if (clearButton) {
-            clearButton.focus()
-          }
-        }}
-        tabIndex={-1}
-      >
-        Clear All Todos
-      </button> */}
     </div>
   )
 }
