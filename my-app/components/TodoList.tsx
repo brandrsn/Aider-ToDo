@@ -41,7 +41,7 @@ export default function TodoList() {
   }, []);
 
   const handleDelete = (id: number) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, completed: true } : todo)));
   };
 
   return (
@@ -87,6 +87,7 @@ export default function TodoList() {
             className={`bg-gray-800 p-4 rounded shadow border border-gray-700 cursor-pointer ${
               todo.completed ? 'line-through text-gray-500' : ''
             }`}
+            onDoubleClick={() => setTodos(todos.map((t) => (t.id === todo.id ? { ...t, completed: !t.completed } : t)))}
           >
             {todo.text}
           </li>
