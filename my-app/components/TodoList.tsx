@@ -6,6 +6,11 @@ import { useTheme } from 'next-themes';
 const TODOS_KEY = 'todos';
 
 export default function TodoList() {
+  const { theme, setTheme } = useTheme();
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
   const [todos, setTodos] = useState<{ id: number; text: string; completed: boolean }[]>(() => {
     const storedTodos = localStorage.getItem(TODOS_KEY);
     return storedTodos ? JSON.parse(storedTodos) : [];
