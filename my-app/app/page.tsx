@@ -15,8 +15,10 @@ export default function Home() {
   }
 
   const clearTodos = () => {
-    localStorage.removeItem(TODOS_KEY)
-    window.location.reload()
+    if (typeof window !== "undefined") {
+      localStorage.removeItem(TODOS_KEY);
+      window.location.reload();
+    }
   }
 
   return (

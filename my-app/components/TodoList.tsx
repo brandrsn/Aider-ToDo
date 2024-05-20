@@ -6,10 +6,14 @@ import { GeistSans } from 'geist/font/sans';
 const TODOS_KEY = "todos"
 
 export default function TodoList({ theme }) {
-  const [todos, setTodos] = useState(() => {
-    const storedTodos = localStorage.getItem(TODOS_KEY)
-    return storedTodos ? JSON.parse(storedTodos) : []
-  })
+  const [todos, setTodos] = useState([]);
+  
+  useEffect(() => {
+    const storedTodos = localStorage.getItem(TODOS_KEY);
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos));
+    }
+  }, []);
   const [newTodo, setNewTodo] = useState("")
   const [editingTodoId, setEditingTodoId] = useState(null)
   const [validationMessage, setValidationMessage] = useState("")
